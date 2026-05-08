@@ -1,4 +1,4 @@
-**Last updated:** May 7, 2025
+**Last updated:** May 8, 2026
 
 This Privacy Policy explains how filesinpdf.com (the "Service") handles information when you use it. We are committed to protecting your privacy.
 
@@ -10,7 +10,7 @@ The Service does not require registration, login, or the submission of any perso
 
 - Files you upload are processed **in memory only** for the sole purpose of extracting embedded files.
 - No uploaded content is written to permanent storage, logged, or retained after processing.
-- All data associated with your session is automatically deleted **within 10 minutes** of upload.
+- All data associated with your session is automatically deleted **shortly after upload**.
 - We do not access, read, analyze, or share the contents of your uploaded files.
 
 ## 3. Session Identifiers
