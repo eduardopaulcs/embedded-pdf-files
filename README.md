@@ -24,19 +24,19 @@ A web application built with Go that allows you to upload PDF files and extract 
    cd embedded-pdf-files
    ```
 
-2. (Optional) Create a `.env` file to customize the port:
-   ```
-   PORT=8080
+2. (Optional) Create a `.env` file to customize the configuration:
+   ```bash
+   cp .env.example .env
    ```
 
 3. Start the application with Docker Compose:
    ```bash
-   docker-compose up
+   docker compose up
    ```
 
    Or to run in background:
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
 ### Accessing the Application
