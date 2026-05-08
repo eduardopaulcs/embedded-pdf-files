@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded PDF Files</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Embedded PDF Files</h1>
+        <p class="subtitle">Upload a PDF to find and download embedded files</p>
+    </header>
+
+    <div class="container">
+        <div class="step active" id="step1">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <h2>Select PDF</h2>
+            </div>
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                </div>
+                <p class="upload-text">Drop your PDF here or click to browse</p>
+                <p class="upload-hint">Max file size: 10MB</p>
+                <input type="file" id="fileInput" accept=".pdf" hidden>
+            </div>
+            <button class="upload-btn" id="uploadBtn" disabled>Upload PDF</button>
+            <p class="notice">By using this site, you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
+        </div>
+
+        <div class="step" id="step2">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <h2>Extract Files</h2>
+            </div>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Processing PDF...</p>
+            </div>
+            <div class="error" id="error"></div>
+            <div class="results" id="results">
+                <p id="resultsTitle"></p>
+                <ul class="file-list" id="fileList"></ul>
+            </div>
+            <div class="actions" id="actions">
+                <button class="download-all-btn" id="downloadAllBtn">Download All (ZIP)</button>
+                <button class="upload-another-btn" id="uploadAnotherBtn">Upload Another PDF</button>
+            </div>
+            <p class="notice" style="display:none;">Files are automatically deleted after 10 minutes.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Made by <a href="https://eduardopaulcs.com" target="_blank" rel="noopener">Paul</a></p>
+        <p class="copyright">&copy; 2026 Eduardo Paul Contardi Soria &middot; <a href="https://github.com/eduardopaulcs/embedded-pdf-files" target="_blank" rel="noopener">GitHub</a> &middot; <a href="/terms">Terms</a> &middot; <a href="/privacy">Privacy</a></p>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
