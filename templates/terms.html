@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms and Conditions - Embedded PDF Files</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    {{if and .UmamiURL .UmamiWebsiteID}}
+    <script async src="{{.UmamiURL}}/script.js" data-website-id="{{.UmamiWebsiteID}}"></script>
+    {{end}}
 </head>
 <body>
     <div class="container legal-container">
         <a href="/" class="back-link">&larr; Back to home</a>
-        {{.}}
+        {{.Content}}
     </div>
 
     <footer class="footer">

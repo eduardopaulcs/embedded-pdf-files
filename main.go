@@ -80,6 +80,12 @@ type UploadResponse struct {
 	Error  string   `json:"error,omitempty"`
 }
 
+type PageData struct {
+	Content        template.HTML
+	UmamiURL       string
+	UmamiWebsiteID string
+}
+
 func clientIP(r *http.Request) string {
 	if xff := r.Header.Get("X-Forwarded-For"); xff != "" {
 		parts := strings.Split(xff, ",")
@@ -137,6 +143,9 @@ func main() {
 	}
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.FS(staticSubFS))))
 
+	umamiURL := os.Getenv("UMAMI_URL")
+	umamiWebsiteID := os.Getenv("UMAMI_WEBSITE_ID")
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
 			http.NotFound(w, r)
@@ -148,7 +157,10 @@ func main() {
 			http.Error(w, "Unexpected error", http.StatusInternalServerError)
 			return
 		}
-		tmpl.Execute(w, nil)
+		tmpl.Execute(w, PageData{
+			UmamiURL:       umamiURL,
+			UmamiWebsiteID: umamiWebsiteID,
+		})
 	})
 
 	http.HandleFunc("/terms", func(w http.ResponseWriter, r *http.Request) {
@@ -176,7 +188,11 @@ func main() {
 			http.Error(w, "Unexpected error", http.StatusInternalServerError)
 			return
 		}
-		tmpl.Execute(w, template.HTML(buf.String()))
+		tmpl.Execute(w, PageData{
+			Content:        template.HTML(buf.String()),
+			UmamiURL:       umamiURL,
+			UmamiWebsiteID: umamiWebsiteID,
+		})
 	})
 
 	http.HandleFunc("/privacy", func(w http.ResponseWriter, r *http.Request) {
@@ -204,7 +220,11 @@ func main() {
 			http.Error(w, "Unexpected error", http.StatusInternalServerError)
 			return
 		}
-		tmpl.Execute(w, template.HTML(buf.String()))
+		tmpl.Execute(w, PageData{
+			Content:        template.HTML(buf.String()),
+			UmamiURL:       umamiURL,
+			UmamiWebsiteID: umamiWebsiteID,
+		})
 	})
 
 	http.HandleFunc("/upload", func(w http.ResponseWriter, r *http.Request) {
