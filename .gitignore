@@ -1,0 +1,6 @@
+.env
+embedded-pdf-files
+*.exe
+.idea/
+.vscode/
+tmp/
