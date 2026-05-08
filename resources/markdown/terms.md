@@ -1,4 +1,4 @@
-**Last updated:** May 7, 2025
+**Last updated:** May 8, 2026
 
 Please read these Terms and Conditions carefully before using filesinpdf.com (the "Service"). By accessing or using the Service, you agree to be bound by these terms. If you do not agree, do not use the Service.
 
@@ -18,7 +18,7 @@ By using the Service, you represent and warrant that:
 ## 3. File Processing and Data Retention
 
 - Uploaded files are processed entirely **in memory**. No files are written to permanent storage.
-- All uploaded data and extracted files are automatically and permanently deleted from memory **within 10 minutes** of upload.
+- All uploaded data and extracted files are automatically and permanently deleted from memory **shortly after upload**.
 - The Service does not retain, analyze, share, or sell any uploaded content.
 - You are solely responsible for saving any extracted files before the session expires.
 

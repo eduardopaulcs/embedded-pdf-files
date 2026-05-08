@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"embed"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"io"
 	"io/fs"
@@ -34,7 +35,7 @@ var templatesFS embed.FS
 //go:embed resources
 var resourcesFS embed.FS
 
-var fileCache = cache.New(10*time.Minute, 5*time.Minute)
+var fileCache *cache.Cache
 
 // Rate limiter configuration (defaults, overridable via environment variables)
 const (
@@ -71,6 +72,29 @@ func init() {
 	uploadLimitMax = envInt("UPLOAD_LIMIT_MAX", defaultUploadLimitMax)
 	uploadLimitWindow = envDuration("UPLOAD_LIMIT_WINDOW", defaultUploadLimitWindow)
 	uploadLimiter = cache.New(2*uploadLimitWindow, uploadLimitWindow)
+	fileCache = cache.New(uploadLimitWindow, uploadLimitWindow/2)
+}
+
+func humanDuration(d time.Duration) string {
+	minutes := int(d.Minutes())
+	if minutes >= 60 {
+		hours := minutes / 60
+		mins := minutes % 60
+		if mins == 0 {
+			if hours == 1 {
+				return "1 hour"
+			}
+			return fmt.Sprintf("%d hours", hours)
+		}
+		if hours == 1 {
+			return fmt.Sprintf("1 hour %d minutes", mins)
+		}
+		return fmt.Sprintf("%d hours %d minutes", hours, mins)
+	}
+	if minutes == 1 {
+		return "1 minute"
+	}
+	return fmt.Sprintf("%d minutes", minutes)
 }
 
 type UploadResponse struct {
@@ -84,6 +108,7 @@ type PageData struct {
 	Content        template.HTML
 	UmamiURL       string
 	UmamiWebsiteID string
+	CacheTTL       string
 }
 
 func clientIP(r *http.Request) string {
@@ -180,6 +205,7 @@ func main() {
 		tmpl.Execute(w, PageData{
 			UmamiURL:       umamiURL,
 			UmamiWebsiteID: umamiWebsiteID,
+			CacheTTL:       humanDuration(uploadLimitWindow),
 		})
 	})
 
