@@ -1,5 +1,3 @@
-# Privacy Policy
-
 **Last updated:** May 7, 2025
 
 This Privacy Policy explains how [DOMAIN] (the "Service") handles information when you use it. We are committed to protecting your privacy.

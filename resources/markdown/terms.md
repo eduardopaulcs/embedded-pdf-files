@@ -1,5 +1,3 @@
-# Terms and Conditions
-
 **Last updated:** May 7, 2025
 
 Please read these Terms and Conditions carefully before using [DOMAIN] (the "Service"). By accessing or using the Service, you agree to be bound by these terms. If you do not agree, do not use the Service.

@@ -146,6 +146,26 @@ func main() {
 	umamiURL := os.Getenv("UMAMI_URL")
 	umamiWebsiteID := os.Getenv("UMAMI_WEBSITE_ID")
 
+	http.HandleFunc("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
+		data, err := resourcesFS.ReadFile("resources/robots.txt")
+		if err != nil {
+			http.NotFound(w, r)
+			return
+		}
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		w.Write(data)
+	})
+
+	http.HandleFunc("/sitemap.xml", func(w http.ResponseWriter, r *http.Request) {
+		data, err := resourcesFS.ReadFile("resources/sitemap.xml")
+		if err != nil {
+			http.NotFound(w, r)
+			return
+		}
+		w.Header().Set("Content-Type", "application/xml; charset=utf-8")
+		w.Write(data)
+	})
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
 			http.NotFound(w, r)
