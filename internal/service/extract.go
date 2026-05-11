@@ -1,4 +1,4 @@
-package extractor
+package service
 
 import (
 	"archive/zip"
@@ -16,24 +16,17 @@ var sanitizeRegex = regexp.MustCompile(`[^a-zA-Z0-9_.]`)
 var multiUnderscore = regexp.MustCompile(`_+`)
 
 func sanitizeFileName(name string) string {
-	// Get extension with dot
 	ext := filepath.Ext(name)
-	// Base name without extension
 	base := strings.TrimSuffix(name, ext)
 
-	// Sanitize base: only letters, numbers, underscores
 	base = sanitizeRegex.ReplaceAllString(base, "_")
-	// Replace multiple underscores with single one
 	base = multiUnderscore.ReplaceAllString(base, "_")
-	// Trim underscores from start and end
 	base = strings.Trim(base, "_")
 
-	// If no extension, return base only
 	if ext == "" {
 		return base
 	}
 
-	// Extension: remove the dot, keep only letters
 	ext = strings.TrimPrefix(ext, ".")
 	ext = regexp.MustCompile(`[^a-zA-Z]`).ReplaceAllString(ext, "")
 	if ext == "" {
@@ -104,7 +97,6 @@ func Extract(pdfBytes []byte, sourceFile string) (*Result, error) {
 		result.FileNames = append(result.FileNames, sanitizedName)
 	}
 
-	// Generate ZIP only if more than 1 file
 	if len(result.Files) > 1 {
 		var buf bytes.Buffer
 		zipWriter := zip.NewWriter(&buf)
