@@ -54,9 +54,23 @@ Any `go build`, `go run`, `go test`, or other Go commands must be executed
 ## Project Structure
 
 ```
-├── main.go                     # HTTP server, routes, handlers, rate limiting
-├── internal/extractor/         # PDF extraction logic
-│   └── extractor.go
+├── embeds.go                   # //go:embed directives (package main)
+├── main.go                     # Bootstrap: config → deps → http.ListenAndServe
+├── internal/
+│   ├── config/config.go        # Config struct + Load() from env vars
+│   ├── model/model.go          # Shared types (UploadResponse, PageData)
+│   ├── store/store.go          # SessionStore (in-memory session cache)
+│   ├── middleware/
+│   │   └── ratelimit.go        # RateLimiter (per-IP sliding window)
+│   ├── service/
+│   │   ├── service.go          # Service struct, New(), error vars
+│   │   ├── extract.go          # PDF extraction logic (Result, Extract)
+│   │   ├── upload.go           # ProcessUpload (validation + extraction + caching)
+│   │   ├── download.go         # ProcessDownload (session lookup + file serving)
+│   │   ├── format.go           # HumanDuration formatting
+│   │   └── markdown.go         # Markdown-to-HTML via goldmark
+│   └── handler/
+│       └── handler.go          # Handler struct, Deps, New(), Mux(), all handlers
 ├── resources/                  # Embedded static content (markdown, robots.txt, sitemap)
 ├── static/                     # Embedded frontend assets (CSS, JS, images)
 ├── templates/                  # Embedded HTML templates
