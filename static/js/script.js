@@ -11,7 +11,7 @@ var downloadAllBtn = document.getElementById('downloadAllBtn');
 var uploadAnotherBtn = document.getElementById('uploadAnotherBtn');
 var step1 = document.getElementById('step1');
 var step2 = document.getElementById('step2');
-var notice = document.querySelector('#step2 .notice');
+var notices = document.querySelectorAll('#step2 .notice');
 
 var selectedFile = null;
 var sessionData = null;
@@ -76,10 +76,10 @@ function showResults(data) {
 
     resultsTitle.textContent = `Found ${data.files.length} embedded file${data.files.length > 1 ? 's' : ''}.`;
 
-    // Show/hide auto-delete notice based on results
-    if (notice) {
-        notice.style.display = data.files.length > 0 ? 'block' : 'none';
-    }
+    // Show/hide notices based on results
+    notices.forEach(function(n) {
+        n.style.display = data.files.length > 0 ? 'block' : 'none';
+    });
 
     data.files.forEach(function(filename) {
         var li = document.createElement('li');
@@ -125,7 +125,9 @@ function resetToStep1() {
     results.classList.remove('show');
     actions.classList.remove('show');
     hideError();
-    notice.style.display = 'none';
+    notices.forEach(function(n) {
+        n.style.display = 'none';
+    });
     uploadArea.querySelector('.upload-text').textContent = 'Drop your PDF here or click to browse';
 }
 
