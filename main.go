@@ -109,6 +109,7 @@ type PageData struct {
 	UmamiURL       string
 	UmamiWebsiteID string
 	CacheTTL       string
+	DonationURL    string
 }
 
 func clientIP(r *http.Request) string {
@@ -170,6 +171,7 @@ func main() {
 
 	umamiURL := os.Getenv("UMAMI_URL")
 	umamiWebsiteID := os.Getenv("UMAMI_WEBSITE_ID")
+	donationURL := os.Getenv("DONATION_URL")
 
 	http.HandleFunc("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
 		data, err := resourcesFS.ReadFile("resources/robots.txt")
@@ -206,6 +208,7 @@ func main() {
 			UmamiURL:       umamiURL,
 			UmamiWebsiteID: umamiWebsiteID,
 			CacheTTL:       humanDuration(uploadLimitWindow),
+			DonationURL:    donationURL,
 		})
 	})
 
@@ -238,6 +241,7 @@ func main() {
 			Content:        template.HTML(buf.String()),
 			UmamiURL:       umamiURL,
 			UmamiWebsiteID: umamiWebsiteID,
+			DonationURL:    donationURL,
 		})
 	})
 
@@ -270,6 +274,7 @@ func main() {
 			Content:        template.HTML(buf.String()),
 			UmamiURL:       umamiURL,
 			UmamiWebsiteID: umamiWebsiteID,
+			DonationURL:    donationURL,
 		})
 	})
 

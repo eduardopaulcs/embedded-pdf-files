@@ -1,4 +1,4 @@
-**Last updated:** May 8, 2026
+**Last updated:** May 11, 2026
 
 This Privacy Policy explains how filesinpdf.com (the "Service") handles information when you use it. We are committed to protecting your privacy.
 
@@ -41,18 +41,22 @@ No personal data is collected, no cookies are set, and no cross-site tracking oc
 
 We do not sell, trade, rent, or otherwise share any information with third parties. Since we do not collect personal data, there is nothing to share.
 
-## 8. Data Security
+## 8. External Links
+
+The Service may contain links to external websites that are not operated by us. We are not responsible for the privacy practices of these external sites. We encourage you to review their privacy policies before providing any information.
+
+## 9. Data Security
 
 We take reasonable technical measures to protect the Service and the data processed through it. However, no method of transmission over the internet or in-memory processing is 100% secure, and we cannot guarantee absolute security.
 
-## 9. Children's Privacy
+## 10. Children's Privacy
 
 The Service is not directed at or intended for children under the age of 13. Since the Service does not collect personal data from any user, no data from children is collected either. If you are a parent or guardian and have concerns about your child's use of the Service, feel free to contact us at: contact at filesinpdf dot com
 
-## 10. Changes to This Policy
+## 11. Changes to This Policy
 
 We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date. We encourage you to review this page periodically.
 
-## 11. Contact
+## 12. Contact
 
 If you have any questions or concerns about this Privacy Policy, please contact us at: contact at filesinpdf dot com
