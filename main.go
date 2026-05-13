@@ -24,13 +24,16 @@ func main() {
 		log.Fatalf("Failed to create static sub filesystem: %v", err)
 	}
 
+	staticVersion := service.ComputeStaticHash(staticFS)
+
 	h := handler.New(handler.Deps{
-		Service:     svc,
-		RateLimiter: rl,
-		StaticFS:    staticSubFS,
-		TemplatesFS: templatesFS,
-		ResourcesFS: resourcesFS,
-		Config:      cfg,
+		Service:       svc,
+		RateLimiter:   rl,
+		StaticFS:      staticSubFS,
+		TemplatesFS:   templatesFS,
+		ResourcesFS:   resourcesFS,
+		Config:        cfg,
+		StaticVersion: staticVersion,
 	})
 
 	log.Printf("Server started at http://localhost:%s", cfg.Port)
