@@ -16,31 +16,34 @@ import (
 )
 
 type Deps struct {
-	Service     *service.Service
-	RateLimiter *middleware.RateLimiter
-	StaticFS    fs.FS
-	TemplatesFS fs.FS
-	ResourcesFS fs.FS
-	Config      *config.Config
+	Service       *service.Service
+	RateLimiter   *middleware.RateLimiter
+	StaticFS      fs.FS
+	TemplatesFS   fs.FS
+	ResourcesFS   fs.FS
+	Config        *config.Config
+	StaticVersion string
 }
 
 type Handler struct {
-	svc         *service.Service
-	rateLimiter *middleware.RateLimiter
-	staticFS    fs.FS
-	templatesFS fs.FS
-	resourcesFS fs.FS
-	config      *config.Config
+	svc           *service.Service
+	rateLimiter   *middleware.RateLimiter
+	staticFS      fs.FS
+	templatesFS   fs.FS
+	resourcesFS   fs.FS
+	config        *config.Config
+	staticVersion string
 }
 
 func New(deps Deps) *Handler {
 	return &Handler{
-		svc:         deps.Service,
-		rateLimiter: deps.RateLimiter,
-		staticFS:    deps.StaticFS,
-		templatesFS: deps.TemplatesFS,
-		resourcesFS: deps.ResourcesFS,
-		config:      deps.Config,
+		svc:           deps.Service,
+		rateLimiter:   deps.RateLimiter,
+		staticFS:      deps.StaticFS,
+		templatesFS:   deps.TemplatesFS,
+		resourcesFS:   deps.ResourcesFS,
+		config:        deps.Config,
+		staticVersion: deps.StaticVersion,
 	}
 }
 
@@ -101,6 +104,7 @@ func (h *Handler) HandleHome(w http.ResponseWriter, r *http.Request) {
 		GoogleAdsConversionLabel: h.config.GoogleAdsConversionLabel,
 		CacheTTL:                 service.HumanDuration(h.config.UploadLimitWindow),
 		DonationURL:              h.config.DonationURL,
+		StaticVersion:            h.staticVersion,
 	})
 }
 
@@ -126,11 +130,12 @@ func (h *Handler) HandleTerms(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, model.PageData{
-		Content:                 htmlContent,
-		GAMeasurementID:         h.config.GAMeasurementID,
-		GoogleAdsID:             h.config.GoogleAdsID,
+		Content:                  htmlContent,
+		GAMeasurementID:          h.config.GAMeasurementID,
+		GoogleAdsID:              h.config.GoogleAdsID,
 		GoogleAdsConversionLabel: h.config.GoogleAdsConversionLabel,
-		DonationURL:             h.config.DonationURL,
+		DonationURL:              h.config.DonationURL,
+		StaticVersion:            h.staticVersion,
 	})
 }
 
@@ -156,11 +161,12 @@ func (h *Handler) HandlePrivacy(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, model.PageData{
-		Content:                 htmlContent,
-		GAMeasurementID:         h.config.GAMeasurementID,
-		GoogleAdsID:             h.config.GoogleAdsID,
+		Content:                  htmlContent,
+		GAMeasurementID:          h.config.GAMeasurementID,
+		GoogleAdsID:              h.config.GoogleAdsID,
 		GoogleAdsConversionLabel: h.config.GoogleAdsConversionLabel,
-		DonationURL:             h.config.DonationURL,
+		DonationURL:              h.config.DonationURL,
+		StaticVersion:            h.staticVersion,
 	})
 }
 

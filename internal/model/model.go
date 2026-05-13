@@ -16,4 +16,5 @@ type PageData struct {
 	GoogleAdsConversionLabel string
 	CacheTTL                string
 	DonationURL             string
+	StaticVersion           string
 }
