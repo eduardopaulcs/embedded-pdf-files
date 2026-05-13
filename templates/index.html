@@ -37,9 +37,19 @@
 
     <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
     <link rel="stylesheet" href="/static/css/style.css">
-    {{if and .UmamiURL .UmamiWebsiteID}}
-    <script async src="{{.UmamiURL}}/script.js" data-website-id="{{.UmamiWebsiteID}}"></script>
+    {{if or .GAMeasurementID .GoogleAdsID}}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{.GAMeasurementID}}"></script>
+    <script>
+    window.GA_CONFIG = {
+      measurementId: '{{.GAMeasurementID}}',
+      adsId: '{{.GoogleAdsID}}',
+      adsLabel: '{{.GoogleAdsConversionLabel}}',
+      analyticsStorage: 'denied',
+      adStorage: 'denied'
+    };
+    </script>
     {{end}}
+    <script src="/static/js/analytics.js"></script>
 </head>
 <body>
     <header class="header">

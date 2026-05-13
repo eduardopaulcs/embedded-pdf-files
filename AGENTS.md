@@ -48,8 +48,10 @@ Any `go build`, `go run`, `go test`, or other Go commands must be executed
 | `PORT` | `8080` | HTTP server port |
 | `UPLOAD_LIMIT_MAX` | `3` | Max uploads per IP within the window |
 | `UPLOAD_LIMIT_WINDOW` | `10m` | Rate-limit sliding window duration & file retention period |
-| `UMAMI_URL` | `https://cloud.umami.is` | Umami analytics host |
-| `UMAMI_WEBSITE_ID` | `""` | Umami site ID (empty = disabled) |
+| `GA_MEASUREMENT_ID` | `""` | Google Analytics 4 measurement ID (empty = disabled) |
+| `GOOGLE_ADS_ID` | `""` | Google Ads customer ID (empty = disabled) |
+| `GOOGLE_ADS_CONVERSION_LABEL` | `""` | Google Ads conversion label (empty = disabled) |
+| `DONATION_URL` | `""` | Donation link |
 
 ## Project Structure
 

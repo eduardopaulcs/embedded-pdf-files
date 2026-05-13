@@ -10,9 +10,10 @@ type UploadResponse struct {
 }
 
 type PageData struct {
-	Content        template.HTML
-	UmamiURL       string
-	UmamiWebsiteID string
-	CacheTTL       string
-	DonationURL    string
+	Content                 template.HTML
+	GAMeasurementID         string
+	GoogleAdsID             string
+	GoogleAdsConversionLabel string
+	CacheTTL                string
+	DonationURL             string
 }
