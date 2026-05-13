@@ -7,12 +7,13 @@ import (
 )
 
 type Config struct {
-	Port              string
-	UploadLimitMax    int
-	UploadLimitWindow time.Duration
-	UmamiURL          string
-	UmamiWebsiteID    string
-	DonationURL       string
+	Port                    string
+	UploadLimitMax          int
+	UploadLimitWindow       time.Duration
+	GAMeasurementID         string
+	GoogleAdsID             string
+	GoogleAdsConversionLabel string
+	DonationURL             string
 }
 
 func envStr(key, defaultVal string) string {
@@ -45,8 +46,9 @@ func Load() *Config {
 		Port:              envStr("PORT", "8080"),
 		UploadLimitMax:    envInt("UPLOAD_LIMIT_MAX", 3),
 		UploadLimitWindow: envDuration("UPLOAD_LIMIT_WINDOW", 10*time.Minute),
-		UmamiURL:          os.Getenv("UMAMI_URL"),
-		UmamiWebsiteID:    os.Getenv("UMAMI_WEBSITE_ID"),
+		GAMeasurementID:          os.Getenv("GA_MEASUREMENT_ID"),
+		GoogleAdsID:              os.Getenv("GOOGLE_ADS_ID"),
+		GoogleAdsConversionLabel: os.Getenv("GOOGLE_ADS_CONVERSION_LABEL"),
 		DonationURL:       os.Getenv("DONATION_URL"),
 	}
 }

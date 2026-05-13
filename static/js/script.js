@@ -16,6 +16,13 @@ var notices = document.querySelectorAll('#step2 .notice');
 var selectedFile = null;
 var sessionData = null;
 
+function mapError(err) {
+    if (err.indexOf('Invalid file') !== -1) return 'invalid_file';
+    if (err.indexOf('too large') !== -1) return 'file_too_large';
+    if (err.indexOf('Rate limit') !== -1) return 'rate_limited';
+    return 'server_error';
+}
+
 function selectFile(file) {
     hideError();
     if (!file.name.toLowerCase().endsWith('.pdf')) {
@@ -25,6 +32,7 @@ function selectFile(file) {
     selectedFile = file;
     uploadBtn.disabled = false;
     uploadArea.querySelector('.upload-text').textContent = file.name;
+    Analytics.trackEvent('pdf_upload_started', {file_size: file.size});
 }
 
 function handleUpload(file) {
@@ -35,6 +43,9 @@ function handleUpload(file) {
     step1.classList.remove('active');
     step2.classList.add('active');
     loading.classList.add('show');
+
+    var uploadStartTime = Date.now();
+    Analytics.trackEvent('extraction_started', {file_size: file.size});
 
     var formData = new FormData();
     formData.append('pdf', file);
@@ -48,16 +59,22 @@ function handleUpload(file) {
     })
     .then(function(data) {
         loading.classList.remove('show');
+        Analytics.trackEvent('pdf_upload_completed', {file_size: file.size});
+
         if (data.error) {
+            Analytics.trackEvent('extraction_failed', {error_type: mapError(data.error)});
             showError(data.error);
             actions.classList.add('show');
             return;
         }
+        var processingTime = Date.now() - uploadStartTime;
+        Analytics.trackEvent('extraction_completed', {extraction_count: data.files.length, processing_time_ms: processingTime});
         sessionData = data;
         showResults(data);
     })
     .catch(function() {
         loading.classList.remove('show');
+        Analytics.trackEvent('extraction_failed', {error_type: 'network'});
         showError('Failed to process PDF');
         actions.classList.add('show');
     });
@@ -89,8 +106,10 @@ function showResults(data) {
         var btn = document.createElement('button');
         btn.className = 'download-btn';
         btn.textContent = 'Download';
-        btn.onclick = () => {
-            window.location.href = `/download?id=${data.id}&filename=${encodeURIComponent(filename)}`;
+        btn.onclick = function() {
+            Analytics.trackEvent('download_started', {filename: filename});
+            Analytics.trackEvent('download_completed', {filename: filename});
+            window.location.href = '/download?id=' + data.id + '&filename=' + encodeURIComponent(filename);
         };
 
         li.appendChild(span);
@@ -164,5 +183,7 @@ uploadAnotherBtn.addEventListener('click', resetToStep1);
 
 downloadAllBtn.addEventListener('click', function() {
     if (!sessionData || !sessionData.id || !sessionData.hasZip) return;
-    window.location.href = `/download?id=${sessionData.id}&all=true`;
+    Analytics.trackEvent('download_started', {type: 'zip', extraction_count: sessionData.files.length});
+    Analytics.trackEvent('download_completed', {type: 'zip', extraction_count: sessionData.files.length});
+    window.location.href = '/download?id=' + sessionData.id + '&all=true';
 });

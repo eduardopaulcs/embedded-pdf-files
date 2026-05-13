@@ -1,4 +1,4 @@
-**Last updated:** May 11, 2026
+**Last updated:** May 12, 2026
 
 This Privacy Policy explains how filesinpdf.com (the "Service") handles information when you use it. We are committed to protecting your privacy.
 
@@ -23,19 +23,20 @@ As with most web servers, our server may automatically record basic technical in
 
 ## 5. Cookies
 
-The Service does not currently use cookies or similar tracking technologies.
+The Service uses Google Analytics 4 and Google Ads, which set first-party cookies to measure conversions and analyze site usage. These cookies do not contain personal data and are used solely for analytics and advertising measurement purposes.
 
 ## 6. Analytics
 
-The Service uses a privacy-focused, cookieless analytics tool to understand how visitors interact with it. The data collected is fully anonymized and aggregated, and includes:
+The Service uses Google Analytics 4 (GA4) and Google Ads to understand how visitors interact with the site and to measure the effectiveness of advertising campaigns. These tools may set first-party cookies to distinguish unique users and track conversions.
 
-- Pages visited and navigation patterns
-- Referring source (e.g., search engine or external link)
-- Browser type and version
-- Operating system and device type
-- Country of origin (derived from IP address, which is never stored)
+Data collected includes:
+- Pages visited and time spent on the site
+- Referring source and campaign attribution
+- Browser type, operating system, and device type
+- Approximate geographic location (derived from IP address)
+- Conversion events (e.g., successful file extraction or download)
 
-No personal data is collected, no cookies are set, and no cross-site tracking occurs. The analytics data cannot be used to identify individual users.
+Google Analytics is configured with Consent Mode, which restricts cookie usage. Google acts as a data processor under GDPR. For more information on how Google processes data, visit: https://policies.google.com/technologies/partner-sites
 
 ## 7. Data Sharing
 

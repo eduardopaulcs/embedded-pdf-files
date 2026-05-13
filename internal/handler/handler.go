@@ -96,10 +96,11 @@ func (h *Handler) HandleHome(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, model.PageData{
-		UmamiURL:       h.config.UmamiURL,
-		UmamiWebsiteID: h.config.UmamiWebsiteID,
-		CacheTTL:       service.HumanDuration(h.config.UploadLimitWindow),
-		DonationURL:    h.config.DonationURL,
+		GAMeasurementID:          h.config.GAMeasurementID,
+		GoogleAdsID:              h.config.GoogleAdsID,
+		GoogleAdsConversionLabel: h.config.GoogleAdsConversionLabel,
+		CacheTTL:                 service.HumanDuration(h.config.UploadLimitWindow),
+		DonationURL:              h.config.DonationURL,
 	})
 }
 
@@ -125,10 +126,11 @@ func (h *Handler) HandleTerms(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, model.PageData{
-		Content:        htmlContent,
-		UmamiURL:       h.config.UmamiURL,
-		UmamiWebsiteID: h.config.UmamiWebsiteID,
-		DonationURL:    h.config.DonationURL,
+		Content:                 htmlContent,
+		GAMeasurementID:         h.config.GAMeasurementID,
+		GoogleAdsID:             h.config.GoogleAdsID,
+		GoogleAdsConversionLabel: h.config.GoogleAdsConversionLabel,
+		DonationURL:             h.config.DonationURL,
 	})
 }
 
@@ -154,10 +156,11 @@ func (h *Handler) HandlePrivacy(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, model.PageData{
-		Content:        htmlContent,
-		UmamiURL:       h.config.UmamiURL,
-		UmamiWebsiteID: h.config.UmamiWebsiteID,
-		DonationURL:    h.config.DonationURL,
+		Content:                 htmlContent,
+		GAMeasurementID:         h.config.GAMeasurementID,
+		GoogleAdsID:             h.config.GoogleAdsID,
+		GoogleAdsConversionLabel: h.config.GoogleAdsConversionLabel,
+		DonationURL:             h.config.DonationURL,
 	})
 }
 
