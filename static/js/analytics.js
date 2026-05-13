@@ -1,17 +1,24 @@
 (function() {
   var cfg = window.GA_CONFIG || {};
-  var enabled = !!cfg.measurementId;
-
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function() { dataLayer.push(arguments); };
+  var enabled = !!(cfg.measurementId || cfg.adsId);
 
   if (enabled) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function() { dataLayer.push(arguments); };
+
     gtag('js', new Date());
-    gtag('config', cfg.measurementId, {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      send_page_view: false
-    });
+
+    if (cfg.measurementId) {
+      gtag('config', cfg.measurementId, {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        send_page_view: false
+      });
+    }
+
+    if (cfg.adsId) {
+      gtag('config', cfg.adsId);
+    }
   }
 
   window.Analytics = {
@@ -42,7 +49,7 @@
     }
   };
 
-  if (enabled) {
+  if (cfg.measurementId) {
     Analytics.trackPageView(window.location.pathname + window.location.search);
 
     var origPushState = history.pushState;
