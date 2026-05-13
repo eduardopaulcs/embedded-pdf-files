@@ -1,4 +1,4 @@
-**Last updated:** May 11, 2026
+**Last updated:** May 12, 2026
 
 Please read these Terms and Conditions carefully before using filesinpdf.com (the "Service"). By accessing or using the Service, you agree to be bound by these terms. If you do not agree, do not use the Service.
 
@@ -49,7 +49,7 @@ The Service and its underlying code are the property of the operator. Nothing in
 
 ## 9. Third-Party Services and External Links
 
-The Service uses a privacy-focused, cookieless analytics tool to collect aggregated, anonymous usage data. This includes information such as pages visited, referring sources, browser type, operating system, device type, and country. No personal data or cross-site identifiers are collected. For more details, see our Privacy Policy.
+The Service uses Google Analytics 4 and Google Ads to collect aggregated usage data and measure conversions. These tools may set first-party cookies. Data collected includes pages visited, referring sources, browser type, device type, and country, as well as conversion events (e.g., file extractions and downloads). Google acts as a data processor. For more details, see our Privacy Policy.
 
 The Service may contain links to external websites or services. We are not responsible for the content, privacy practices, or terms of those external sites. Your use of external services is subject to their own terms and policies.
 
