@@ -14,7 +14,7 @@
     <meta property="og:description" content="Upload a PDF to find and download embedded files. Free online PDF attachment extractor. No sign-up required.">
     <meta property="og:url" content="https://filesinpdf.com/">
     <meta property="og:site_name" content="Files in PDF">
-    <meta property="og:image" content="https://filesinpdf.com/static/images/og-image.svg">
+    <meta property="og:image" content="https://filesinpdf.com/static/images/og-image.svg?v={{.StaticVersion}}">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -35,8 +35,8 @@
     }
     </script>
 
-    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg?v={{.StaticVersion}}">
+    <link rel="stylesheet" href="/static/css/style.css?v={{.StaticVersion}}">
     {{if or .GAMeasurementID .GoogleAdsID}}
     <script async src="https://www.googletagmanager.com/gtag/js?id={{.GAMeasurementID}}"></script>
     <script>
@@ -49,7 +49,7 @@
     };
     </script>
     {{end}}
-    <script src="/static/js/analytics.js"></script>
+    <script src="/static/js/analytics.js?v={{.StaticVersion}}"></script>
 </head>
 <body>
     <header class="header">
@@ -107,6 +107,6 @@
         <p class="copyright">&copy; 2026 Eduardo Paul Contardi Soria &middot; <a href="https://github.com/eduardopaulcs/embedded-pdf-files" target="_blank" rel="noopener">GitHub</a> &middot; <a href="/terms">Terms</a> &middot; <a href="/privacy">Privacy</a></p>
     </footer>
 
-    <script src="/static/js/script.js"></script>
+    <script src="/static/js/script.js?v={{.StaticVersion}}"></script>
 </body>
 </html>
