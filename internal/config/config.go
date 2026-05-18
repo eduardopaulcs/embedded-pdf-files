@@ -14,6 +14,7 @@ type Config struct {
 	GoogleAdsID             string
 	GoogleAdsConversionLabel string
 	DonationURL             string
+	SiteURL                 string
 }
 
 func envStr(key, defaultVal string) string {
@@ -49,6 +50,7 @@ func Load() *Config {
 		GAMeasurementID:          os.Getenv("GA_MEASUREMENT_ID"),
 		GoogleAdsID:              os.Getenv("GOOGLE_ADS_ID"),
 		GoogleAdsConversionLabel: os.Getenv("GOOGLE_ADS_CONVERSION_LABEL"),
-		DonationURL:       os.Getenv("DONATION_URL"),
+		DonationURL: os.Getenv("DONATION_URL"),
+		SiteURL:     envStr("SITE_URL", ""),
 	}
 }
