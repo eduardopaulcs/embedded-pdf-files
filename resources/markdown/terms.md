@@ -1,10 +1,10 @@
 **Last updated:** May 12, 2026
 
-Please read these Terms and Conditions carefully before using filesinpdf.com (the "Service"). By accessing or using the Service, you agree to be bound by these terms. If you do not agree, do not use the Service.
+Please read these Terms and Conditions carefully before using [WEBSITE URL] (the "Service"). By accessing or using the Service, you agree to be bound by these terms. If you do not agree, do not use the Service.
 
 ## 1. About the Service
 
-filesinpdf.com is a free, web-based tool that allows users to upload PDF files, detect files embedded within them, and download those embedded files individually or as a ZIP archive. No user registration is required.
+[WEBSITE URL] is a free, web-based tool that allows users to upload PDF files, detect files embedded within them, and download those embedded files individually or as a ZIP archive. No user registration is required.
 
 ## 2. Donations
 
@@ -63,4 +63,4 @@ These Terms are governed by the laws of the Republic of Argentina, without regar
 
 ## 12. Contact
 
-If you have any questions about these Terms, you can reach us at: contact at filesinpdf dot com
+If you have any questions about these Terms, you can reach us at: [WEBSITE CONTACT MAIL]
