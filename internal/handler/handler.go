@@ -52,8 +52,8 @@ func (h *Handler) Mux() *http.ServeMux {
 
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.FS(h.staticFS))))
 
-	mux.HandleFunc("/robots.txt", h.HandleRobotsTxt)
-	mux.HandleFunc("/sitemap.xml", h.HandleSitemapXML)
+	// TODO: re-add /robots.txt and /sitemap.xml handlers
+	// once a production domain (SITE_URL) is configured.
 
 	mux.HandleFunc("/", h.HandleHome)
 	mux.HandleFunc("/terms", h.HandleTerms)
@@ -63,26 +63,6 @@ func (h *Handler) Mux() *http.ServeMux {
 	mux.HandleFunc("/download", h.HandleDownload)
 
 	return mux
-}
-
-func (h *Handler) HandleRobotsTxt(w http.ResponseWriter, r *http.Request) {
-	data, err := fs.ReadFile(h.resourcesFS, "resources/robots.txt")
-	if err != nil {
-		http.NotFound(w, r)
-		return
-	}
-	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-	w.Write(data)
-}
-
-func (h *Handler) HandleSitemapXML(w http.ResponseWriter, r *http.Request) {
-	data, err := fs.ReadFile(h.resourcesFS, "resources/sitemap.xml")
-	if err != nil {
-		http.NotFound(w, r)
-		return
-	}
-	w.Header().Set("Content-Type", "application/xml; charset=utf-8")
-	w.Write(data)
 }
 
 func (h *Handler) HandleHome(w http.ResponseWriter, r *http.Request) {
@@ -104,6 +84,7 @@ func (h *Handler) HandleHome(w http.ResponseWriter, r *http.Request) {
 		GoogleAdsConversionLabel: h.config.GoogleAdsConversionLabel,
 		CacheTTL:                 service.HumanDuration(h.config.UploadLimitWindow),
 		DonationURL:              h.config.DonationURL,
+		SiteURL:                  h.config.SiteURL,
 		StaticVersion:            h.staticVersion,
 	})
 }
@@ -135,6 +116,7 @@ func (h *Handler) HandleTerms(w http.ResponseWriter, r *http.Request) {
 		GoogleAdsID:              h.config.GoogleAdsID,
 		GoogleAdsConversionLabel: h.config.GoogleAdsConversionLabel,
 		DonationURL:              h.config.DonationURL,
+		SiteURL:                  h.config.SiteURL,
 		StaticVersion:            h.staticVersion,
 	})
 }
@@ -166,6 +148,7 @@ func (h *Handler) HandlePrivacy(w http.ResponseWriter, r *http.Request) {
 		GoogleAdsID:              h.config.GoogleAdsID,
 		GoogleAdsConversionLabel: h.config.GoogleAdsConversionLabel,
 		DonationURL:              h.config.DonationURL,
+		SiteURL:                  h.config.SiteURL,
 		StaticVersion:            h.staticVersion,
 	})
 }

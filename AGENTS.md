@@ -4,8 +4,6 @@
 
 A Go web application that lets users upload PDFs, extract embedded files (PDF portfolio attachments), and download them individually or as a ZIP archive. No registration required, no database — everything is in-memory with automatic cleanup after 10 minutes.
 
-Live site: https://filesinpdf.com
-
 ## Tech Stack
 
 - **Go 1.26.2** — pure stdlib backend (`net/http`, `html/template`)
